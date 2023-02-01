@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+body,
+button,
+textarea {
+  font-family: 'Rubik', sans-serif;
+}
+
+body {
+  font-weight: 400;
+  font-size: small;
+  overflow-x: hidden;
+}
+
+span {
+  font-weight: 700;
+}
+
+.username,
+.reply-username,
+button {
+  font-weight: 500;
+}

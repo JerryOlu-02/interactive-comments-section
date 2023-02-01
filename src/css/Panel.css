@@ -1,0 +1,18 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(228, 33%, 97%);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.panel {
+  border-radius: 5px;
+  padding: 20px;
+}

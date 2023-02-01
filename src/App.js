@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import AddComment from './components/AddComment';
+import CommentList from './components/CommentList';
+import useCommentContext from './hooks/useCommentContext';
+import './css/App.css';
 
-function App() {
+const App = function () {
+  const { fetchCurrentUser, fetchComment } = useCommentContext();
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, [fetchCurrentUser]);
+
+  useEffect(() => {
+    fetchComment();
+  }, [fetchComment]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CommentList />
+      <AddComment />
     </div>
   );
-}
+};
 
 export default App;

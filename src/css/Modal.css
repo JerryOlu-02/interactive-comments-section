@@ -1,0 +1,99 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.modal-seethrough {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.6;
+
+  width: 100%;
+  height: 100%;
+}
+
+.modal-container {
+  padding: 25px;
+  border-radius: 5px;
+
+  position: absolute;
+  left: calc(50%);
+  transform: translate(-50%, 100%);
+
+  max-width: 25%;
+  background-color: #fff;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+.modal-container > h2 {
+  text-align: left;
+  color: hsl(212, 24%, 26%);
+}
+
+.modal-container > p {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  color: hsl(211, 10%, 45%);
+}
+
+.modal-btn-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.modal-btn-no,
+.modal-btn-yes {
+  border: none;
+  border-radius: 5px;
+  background-color: hsl(211, 10%, 45%);
+  height: 3rem;
+  width: 50%;
+  color: #fff;
+}
+
+.modal-btn-no:hover,
+.modal-btn-yes:hover {
+  cursor: pointer;
+}
+
+.modal-btn-yes {
+  background-color: hsl(358, 79%, 66%);
+}
+
+/* .show-modal {
+  opacity: 1;
+} */
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+@media (max-width: 1076px) {
+  .modal-container {
+    max-width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-container {
+    max-width: 60%;
+  }
+}
+
+@media (max-width: 563px) {
+  .modal-container {
+    max-width: unset;
+    width: 90%;
+  }
+}
