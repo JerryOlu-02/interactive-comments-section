@@ -10,19 +10,26 @@ const Provider = function ({ children }) {
   const [comments, setComments] = useState([]);
 
   const fetchCurrentUser = useCallback(async function () {
-    const response = await axios.get('http://127.0.0.1:3001/currentUser');
+    const response = await axios.get(
+      'https://comments-reply-api.onrender.com/currentUser'
+    );
 
     setcurrentUser(response.data);
   }, []);
 
   const fetchComment = useCallback(async function () {
-    const response = await axios.get('http://127.0.0.1:3001/comments');
+    const response = await axios.get(
+      'https://comments-reply-api.onrender.com/comments'
+    );
 
     setComments(response.data);
   }, []);
 
   const addComment = async function (data) {
-    const response = await axios.post(`http://127.0.0.1:3001/comments`, data);
+    const response = await axios.post(
+      `https://comments-reply-api.onrender.com/comments`,
+      data
+    );
 
     const updatedArr = [...comments, response.data];
 
@@ -30,7 +37,9 @@ const Provider = function ({ children }) {
   };
 
   const deleteComment = async function (id) {
-    await axios.delete(`http://127.0.0.1:3001/comments/${id}`);
+    await axios.delete(
+      `https://comments-reply-api.onrender.com/comments/${id}`
+    );
 
     const updatedArr = comments.filter((comment) => {
       return comment.id !== id;
@@ -61,7 +70,7 @@ const Provider = function ({ children }) {
 
     // PUT updated replies into the Parent comment
     const response = await axios.put(
-      `http://127.0.0.1:3001/comments/${parentId}`,
+      `https://comments-reply-api.onrender.com/comments/${parentId}`,
       { ...parentComment, replies: [...excludedReplies] }
     );
 
@@ -75,9 +84,12 @@ const Provider = function ({ children }) {
   };
 
   const editComment = async function (id, data) {
-    const response = await axios.put(`http://127.0.0.1:3001/comments/${id}`, {
-      ...data,
-    });
+    const response = await axios.put(
+      `https://comments-reply-api.onrender.com/comments/${id}`,
+      {
+        ...data,
+      }
+    );
 
     const updatedArr = comments.map((comment) => {
       if (comment.id !== id) return comment;
@@ -111,7 +123,7 @@ const Provider = function ({ children }) {
       });
 
     const response = await axios.put(
-      `http://127.0.0.1:3001/comments/${parentId}`,
+      `https://comments-reply-api.onrender.com/comments/${parentId}`,
       { ...editParent, replies: [...excludedReplies, { ...editData }] }
     );
     // console.log(response.data);
@@ -141,7 +153,7 @@ const Provider = function ({ children }) {
       });
 
     const response = await axios.put(
-      `http://127.0.0.1:3001/comments/${parentId}`,
+      `https://comments-reply-api.onrender.com/comments/${parentId}`,
       { ...replyParent, replies: [...previousReplies, { ...replyData }] }
     );
 
@@ -166,10 +178,13 @@ const Provider = function ({ children }) {
       });
 
     // PUT the array in the database, and overwrite the reply with the replies array
-    const response = await axios.put(`http://127.0.0.1:3001/comments/${id}`, {
-      ...comment,
-      replies: [...repliesArray, { ...replyData }],
-    });
+    const response = await axios.put(
+      `https://comments-reply-api.onrender.com/comments/${id}`,
+      {
+        ...comment,
+        replies: [...repliesArray, { ...replyData }],
+      }
+    );
 
     const updatedArr = comments.map((comment) => {
       if (comment.id !== id) return comment;
