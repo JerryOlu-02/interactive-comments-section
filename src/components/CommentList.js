@@ -4,7 +4,6 @@ import ReplyShow from './ReplyShow';
 
 const CommentList = function () {
   const { comments, loading, isError } = useCommentContext();
-  console.log(loading);
 
   const loadingBar = (
     <div className="loading-bar">
