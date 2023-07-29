@@ -3,7 +3,24 @@ import useCommentContext from '../hooks/useCommentContext';
 import ReplyShow from './ReplyShow';
 
 const CommentList = function () {
-  const { comments } = useCommentContext();
+  const { comments, loading, isError } = useCommentContext();
+  console.log(loading);
+
+  const loadingBar = (
+    <div className="loading-bar">
+      <div>
+        <span></span>
+      </div>
+
+      <div>
+        <span></span>
+      </div>
+
+      <div>
+        <span></span>
+      </div>
+    </div>
+  );
 
   const renderedElements = comments.map((comment) => {
     return (
@@ -17,7 +34,17 @@ const CommentList = function () {
     );
   });
 
-  return <div>{renderedElements}</div>;
+  return (
+    <>
+      {isError && (
+        <div className="error-message">
+          <p>{isError}</p>
+        </div>
+      )}
+
+      {loading ? loadingBar : renderedElements}
+    </>
+  );
 };
 
 export default CommentList;

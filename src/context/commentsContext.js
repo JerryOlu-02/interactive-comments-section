@@ -5,6 +5,10 @@ import { useState } from 'react';
 const CommentContext = createContext();
 
 const Provider = function ({ children }) {
+  const [loading, setLoading] = useState(false);
+
+  const [isError, setError] = useState(null);
+
   const [currentUser, setcurrentUser] = useState({});
 
   const [comments, setComments] = useState([]);
@@ -18,11 +22,20 @@ const Provider = function ({ children }) {
   }, []);
 
   const fetchComment = useCallback(async function () {
-    const response = await axios.get(
-      'https://comments-reply-api.onrender.com/comments'
-    );
+    setLoading(true);
+    setError(null);
 
-    setComments(response.data);
+    try {
+      const response = await axios.get(
+        'https://comments-reply-api.onrender.com/comments'
+      );
+
+      setComments(response.data);
+    } catch (error) {
+      setError(error.message);
+    }
+
+    setLoading(false);
   }, []);
 
   const addComment = async function (data) {
@@ -196,6 +209,8 @@ const Provider = function ({ children }) {
   const data = {
     fetchCurrentUser,
     fetchComment,
+    loading,
+    isError,
     comments,
     currentUser,
     replyComment,
